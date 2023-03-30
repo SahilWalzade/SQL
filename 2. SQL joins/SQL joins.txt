@@ -1,0 +1,376 @@
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 45
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use udacity
+Database changed
+mysql> use udacity;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| wallmart          |
+| wallmart_address  |
+| wallmart_order    |
+| wallmart_product  |
++-------------------+
+4 rows in set (0.01 sec)
+
+mysql> CREATE TABLE magpie_attacks(
+    ->     state_code varchar(255),
+    ->     state_name varchar(255),
+    ->     animal varchar(255),
+    ->     number_of_attacks int(255)
+    -> );
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+mysql> INSERT INTO magpie_attacks(
+    ->     state_code,
+    ->     state_name,
+    ->     animal,
+    ->     number_of_attacks
+    -> )
+    -> VALUES
+    ->     ('SA', 'South Australia', 'magpie', 154),
+    ->     ('VIC', 'Victoria', 'magpie', 972),
+    ->     ('TAS', 'Tasmania', 'magpie', 0),
+    ->     ('NSW', 'New South Whales', 'magpie', 823),
+    ->     ('QLD', 'Queensland', 'magpie', 1141),
+    ->     ('WA', 'Western Australia', 'magpie', 287),
+    ->     ('ACT', 'Australian Capital Territory', 'magpie', 668)
+    -> ;
+Query OK, 7 rows affected (0.00 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE dropbear_attacks(
+    ->     state_code varchar(255),
+    ->     state_name varchar(255),
+    ->     animal varchar(255),
+    ->     number_of_attacks int(255)
+    -> );
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> INSERT INTO dropbear_attacks(
+    ->     state_code,
+    ->     state_name,
+    ->     animal,
+    ->     number_of_attacks
+    -> )
+    -> VALUES
+    ->     ('SA', 'South Australia', 'dropbear', 21),
+    ->     ('VIC', 'Victoria', 'dropbear', 67),
+    ->     ('TAS', 'Tasmania', 'dropbear', 30),
+    ->     ('NSW', 'New South Whales', 'dropbear', 19),
+    ->     ('QLD', 'Queensland', 'dropbear', 40),
+    ->     ('WA', 'Western Australia', 'dropbear', 37)
+    -> ;
+Query OK, 6 rows affected (0.00 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE australian_states(
+    ->     state_code varchar(255),
+    ->     state_name varchar(255),
+    ->     population int(255),
+    ->     area_km2 int(255)
+    -> );
+Query OK, 0 rows affected, 2 warnings (0.01 sec)
+
+mysql> INSERT INTO australian_states(
+    ->     state_code,
+    ->     state_name,
+    ->     population,
+    ->     area_km2
+    -> )
+    -> VALUES
+    ->     ('SA', 'South Australia', 1751693, 1044353),
+    ->     ('VIC', 'Victoria', 6594804, 237657),
+    ->     ('TAS', 'Tasmania', 534281, 90758),
+    ->     ('NSW', 'New South Whales', 8089526, 809952),
+    ->     ('QLD', 'Queensland', 5095100, 1851736),
+    ->     ('WA', 'Western Australia', 2621680, 2642753),
+    ->     ('ACT', 'Australian Capital Territory', 426709, 2358),
+    ->     ('NT', 'Northern Territory', 245869, 1419630)
+    -> ;
+Query OK, 8 rows affected (0.05 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| australian_states |
+| dropbear_attacks  |
+| magpie_attacks    |
+| wallmart          |
+| wallmart_address  |
+| wallmart_order    |
+| wallmart_product  |
++-------------------+
+7 rows in set (0.00 sec)
+
+mysql> select *  from australian_states;
++------------+------------------------------+------------+----------+
+| state_code | state_name                   | population | area_km2 |
++------------+------------------------------+------------+----------+
+| SA         | South Australia              |    1751693 |  1044353 |
+| VIC        | Victoria                     |    6594804 |   237657 |
+| TAS        | Tasmania                     |     534281 |    90758 |
+| NSW        | New South Whales             |    8089526 |   809952 |
+| QLD        | Queensland                   |    5095100 |  1851736 |
+| WA         | Western Australia            |    2621680 |  2642753 |
+| ACT        | Australian Capital Territory |     426709 |     2358 |
+| NT         | Northern Territory           |     245869 |  1419630 |
++------------+------------------------------+------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> select *  from australian_attacks;
+ERROR 1146 (42S02): Table 'udacity.australian_attacks' doesn't exist
+mysql> select *  from dropbear_attacks;
++------------+-------------------+----------+-------------------+
+| state_code | state_name        | animal   | number_of_attacks |
++------------+-------------------+----------+-------------------+
+| SA         | South Australia   | dropbear |                21 |
+| VIC        | Victoria          | dropbear |                67 |
+| TAS        | Tasmania          | dropbear |                30 |
+| NSW        | New South Whales  | dropbear |                19 |
+| QLD        | Queensland        | dropbear |                40 |
+| WA         | Western Australia | dropbear |                37 |
++------------+-------------------+----------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select *  from magpie_attacks;
++------------+------------------------------+--------+-------------------+
+| state_code | state_name                   | animal | number_of_attacks |
++------------+------------------------------+--------+-------------------+
+| SA         | South Australia              | magpie |               154 |
+| VIC        | Victoria                     | magpie |               972 |
+| TAS        | Tasmania                     | magpie |                 0 |
+| NSW        | New South Whales             | magpie |               823 |
+| QLD        | Queensland                   | magpie |              1141 |
+| WA         | Western Australia            | magpie |               287 |
+| ACT        | Australian Capital Territory | magpie |               668 |
++------------+------------------------------+--------+-------------------+
+7 rows in set (0.00 sec)
+
+mysql>
+mysql> select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks , magpie_attacks.number_of_attacks
+    -> from australian_states
+    -> join dropbear_attacks,magpie_attacks
+    -> on australian
+    -> \c
+mysql> select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks , magpie_attacks.number_of_attacks
+    -> from australian_states
+    -> join dropbear_attacks,magpie_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code AND australian_states.state_code = magpie_attacks.state_code ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on australian_states.state_code = dropbear_attacks.state_code AND australian_sta' at line 4
+mysql> select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks
+    -> from australian_states
+    -> join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code ;
++------------+-------------------+-------------------+
+| state_code | state_name        | number_of_attacks |
++------------+-------------------+-------------------+
+| SA         | South Australia   |                21 |
+| VIC        | Victoria          |                67 |
+| TAS        | Tasmania          |                30 |
+| NSW        | New South Whales  |                19 |
+| QLD        | Queensland        |                40 |
+| WA         | Western Australia |                37 |
++------------+-------------------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select australian_states.* , dropbear_attacks.*
+    -> from australian_states
+    -> join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code ;
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+
+| state_code | state_name        | population | area_km2 | state_code | state_name        | animal   | number_of_attacks |
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+
+| SA         | South Australia   |    1751693 |  1044353 | SA         | South Australia   | dropbear |                21 |
+| VIC        | Victoria          |    6594804 |   237657 | VIC        | Victoria          | dropbear |                67 |
+| TAS        | Tasmania          |     534281 |    90758 | TAS        | Tasmania          | dropbear |                30 |
+| NSW        | New South Whales  |    8089526 |   809952 | NSW        | New South Whales  | dropbear |                19 |
+| QLD        | Queensland        |    5095100 |  1851736 | QLD        | Queensland        | dropbear |                40 |
+| WA         | Western Australia |    2621680 |  2642753 | WA         | Western Australia | dropbear |                37 |
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select australian_states.* , dropbear_attacks.* ,magpie_attacks.*
+    -> from australian_states
+    -> join dropbear_attacks,magpie_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on australian_states.state_code = dropbear_attacks.state_code' at line 4
+mysql> select australian_states.* , dropbear_attacks.* ,magpie_attacks.*
+    -> from australian_states
+    -> join dropbear_attacks,magpie_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code AND australian_states.state_code = magpie_attacks.state_code ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on australian_states.state_code = dropbear_attacks.state_code AND australian_sta' at line 4
+mysql> select australian_states.* , dropbear_attacks.* ,magpie_attacks.*
+    -> from australian_states
+    -> join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code
+    -> join magpie_attacks
+    -> on australian_states.state_code = magpie_attacks.state_code ;
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+------------+-------------------+--------+-------------------+
+| state_code | state_name        | population | area_km2 | state_code | state_name        | animal   | number_of_attacks | state_code | state_name        | animal | number_of_attacks |
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+------------+-------------------+--------+-------------------+
+| SA         | South Australia   |    1751693 |  1044353 | SA         | South Australia   | dropbear |                21 | SA         | South Australia   | magpie |               154 |
+| VIC        | Victoria          |    6594804 |   237657 | VIC        | Victoria          | dropbear |                67 | VIC        | Victoria          | magpie |               972 |
+| TAS        | Tasmania          |     534281 |    90758 | TAS        | Tasmania          | dropbear |                30 | TAS        | Tasmania          | magpie |                 0 |
+| NSW        | New South Whales  |    8089526 |   809952 | NSW        | New South Whales  | dropbear |                19 | NSW        | New South Whales  | magpie |               823 |
+| QLD        | Queensland        |    5095100 |  1851736 | QLD        | Queensland        | dropbear |                40 | QLD        | Queensland        | magpie |              1141 |
+| WA         | Western Australia |    2621680 |  2642753 | WA         | Western Australia | dropbear |                37 | WA         | Western Australia | magpie |               287 |
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+------------+-------------------+--------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select australian_states.state_code ,australian_states.state_name, dropbear_attacks.number_of_attacks + magpie_attacks.number_of_attacks as total_number_of_attacks
+    -> from australian_states
+    -> join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code
+    -> join magpie_attacks
+    -> on australian_states.state_code = magpie_attacks.state_code ;
++------------+-------------------+-------------------------+
+| state_code | state_name        | total_number_of_attacks |
++------------+-------------------+-------------------------+
+| SA         | South Australia   |                     175 |
+| VIC        | Victoria          |                    1039 |
+| TAS        | Tasmania          |                      30 |
+| NSW        | New South Whales  |                     842 |
+| QLD        | Queensland        |                    1181 |
+| WA         | Western Australia |                     324 |
++------------+-------------------+-------------------------+
+6 rows in set (0.00 sec)
+
+mysql> select a.* , d.* ,m.*
+    -> from australian_states a
+    -> join dropbear_attacks d
+    -> on a.state_code = d.state_code
+    -> join magpie_attacks m
+    -> on a.state_code = m.state_code ;
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+------------+-------------------+--------+-------------------+
+| state_code | state_name        | population | area_km2 | state_code | state_name        | animal   | number_of_attacks | state_code | state_name        | animal | number_of_attacks |
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+------------+-------------------+--------+-------------------+
+| SA         | South Australia   |    1751693 |  1044353 | SA         | South Australia   | dropbear |                21 | SA         | South Australia   | magpie |               154 |
+| VIC        | Victoria          |    6594804 |   237657 | VIC        | Victoria          | dropbear |                67 | VIC        | Victoria          | magpie |               972 |
+| TAS        | Tasmania          |     534281 |    90758 | TAS        | Tasmania          | dropbear |                30 | TAS        | Tasmania          | magpie |                 0 |
+| NSW        | New South Whales  |    8089526 |   809952 | NSW        | New South Whales  | dropbear |                19 | NSW        | New South Whales  | magpie |               823 |
+| QLD        | Queensland        |    5095100 |  1851736 | QLD        | Queensland        | dropbear |                40 | QLD        | Queensland        | magpie |              1141 |
+| WA         | Western Australia |    2621680 |  2642753 | WA         | Western Australia | dropbear |                37 | WA         | Western Australia | magpie |               287 |
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+------------+-------------------+--------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select a.state_code ,a.state_name, d.number_of_attacks + m.number_of_attacks as total_number_of_attacks magpie_attacks.number
+    -> from australian_states a
+    -> join dropbear_attacks d
+    -> on a.state_code = d.state_code
+    -> join magpie_attacks m
+    -> on a.state_code = m.state_code ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'magpie_attacks.number
+from australian_states a
+join dropbear_attacks d
+on a.stat' at line 1
+mysql> select a.state_code ,a.state_name, d.number_of_attacks + m.number_of_attacks as total_number_of_attacks
+    -> from australian_states a
+    -> join dropbear_attacks d
+    -> on a.state_code = d.state_code
+    -> join magpie_attacks m
+    -> on a.state_code = m.state_code ;
++------------+-------------------+-------------------------+
+| state_code | state_name        | total_number_of_attacks |
++------------+-------------------+-------------------------+
+| SA         | South Australia   |                     175 |
+| VIC        | Victoria          |                    1039 |
+| TAS        | Tasmania          |                      30 |
+| NSW        | New South Whales  |                     842 |
+| QLD        | Queensland        |                    1181 |
+| WA         | Western Australia |                     324 |
++------------+-------------------+-------------------------+
+6 rows in set (0.00 sec)
+
+mysql>  select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks
+    ->     -> from australian_states
+    ->     -> join dropbear_attacks
+    ->     -> on australian_states.state_code = dropbear_attacks.state_co^Z^Z^Z\c
+mysql> select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks
+    ->  from australian_states
+    -> left join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code ;
++------------+------------------------------+-------------------+
+| state_code | state_name                   | number_of_attacks |
++------------+------------------------------+-------------------+
+| SA         | South Australia              |                21 |
+| VIC        | Victoria                     |                67 |
+| TAS        | Tasmania                     |                30 |
+| NSW        | New South Whales             |                19 |
+| QLD        | Queensland                   |                40 |
+| WA         | Western Australia            |                37 |
+| ACT        | Australian Capital Territory |              NULL |
+| NT         | Northern Territory           |              NULL |
++------------+------------------------------+-------------------+
+8 rows in set (0.00 sec)
+
+mysql> select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks
+    ->  from australian_states
+    -> right join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code ;
++------------+-------------------+-------------------+
+| state_code | state_name        | number_of_attacks |
++------------+-------------------+-------------------+
+| SA         | South Australia   |                21 |
+| VIC        | Victoria          |                67 |
+| TAS        | Tasmania          |                30 |
+| NSW        | New South Whales  |                19 |
+| QLD        | Queensland        |                40 |
+| WA         | Western Australia |                37 |
++------------+-------------------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks
+    ->  from australian_states
+    -> outer join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'outer join dropbear_attacks
+on australian_states.state_code = dropbear_attacks.s' at line 3
+mysql> select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks
+    ->  from australian_states
+    -> left join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code
+    -> AND australian_states.state_code = "SA";
++------------+------------------------------+-------------------+
+| state_code | state_name                   | number_of_attacks |
++------------+------------------------------+-------------------+
+| SA         | South Australia              |                21 |
+| VIC        | Victoria                     |              NULL |
+| TAS        | Tasmania                     |              NULL |
+| NSW        | New South Whales             |              NULL |
+| QLD        | Queensland                   |              NULL |
+| WA         | Western Australia            |              NULL |
+| ACT        | Australian Capital Territory |              NULL |
+| NT         | Northern Territory           |              NULL |
++------------+------------------------------+-------------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from australian_states;
++------------+------------------------------+------------+----------+
+| state_code | state_name                   | population | area_km2 |
++------------+------------------------------+------------+----------+
+| SA         | South Australia              |    1751693 |  1044353 |
+| VIC        | Victoria                     |    6594804 |   237657 |
+| TAS        | Tasmania                     |     534281 |    90758 |
+| NSW        | New South Whales             |    8089526 |   809952 |
+| QLD        | Queensland                   |    5095100 |  1851736 |
+| WA         | Western Australia            |    2621680 |  2642753 |
+| ACT        | Australian Capital Territory |     426709 |     2358 |
+| NT         | Northern Territory           |     245869 |  1419630 |
++------------+------------------------------+------------+----------+
+8 rows in set (0.00 sec)

@@ -1,0 +1,17 @@
+Rank gives repeate numbers to same values
+
+SELECT id,
+       account_id,
+       total,
+       RANK() OVER (PARTITION BY account_id ORDER BY total DESC) AS total_rank
+FROM orders
+------------------------------------------------------------------------------
+
+
+ROW_NUMBER gives different number different rrow
+
+SELECT id,
+       account_id,
+       total,
+       ROW_NUMBER() OVER (PARTITION BY account_id ORDER BY total DESC) AS total_rank
+FROM orders

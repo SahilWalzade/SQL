@@ -1,0 +1,28 @@
+mysql> select sum(population) as total_population
+    -> from australian_states;
++------------------+
+| total_population |
++------------------+
+|         25359662 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> where population >= 100000;
++------------------+
+| total_population |
++------------------+
+|         25359662 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> where population >= 1000000;
++------------------+
+| total_population |
++------------------+
+|         24152803 |
++------------------+
+1 row in set (0.00 sec)

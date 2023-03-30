@@ -1,0 +1,65 @@
+
+
+
+mysql> select * from wallmart
+    -> where City IN 'Henderson'
+    -> limit 10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Henderson'
+limit 10' at line 2
+mysql> select * from wallmart
+    -> where City IN "Henderson"
+    -> limit 10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"Henderson"
+limit 10' at line 2
+mysql> select * from wallmart
+    -> where City IN ('Henderson')
+    -> limit 10;
++----------+----------------+------------+------------+---------------+---------+-----------+----------+-------------+--------+-----------+--------------+-------------------------------------------------------------+--------+----------+----------+---------+
+| SerialNo | Order ID       | Order Date | Ship Date  | Customer Name | Country | City      | State    | Postal Code | Region | Category  | Sub-Category | Product Name                                                | Sales  | Quantity | Discount | Profit  |
++----------+----------------+------------+------------+---------------+---------+-----------+----------+-------------+--------+-----------+--------------+-------------------------------------------------------------+--------+----------+----------+---------+
+|        0 | CA-2013-152156 | 09-11-2013 | 12-11-2013 | Claire Gute   | USA     | Henderson | Kentucky |       42420 | South  | Furniture | Bookcases    | Bush Somerset Collection Bookcase                           | 261.96 |        2 |        0 | 41.9136 |
+|        1 | CA-2013-152156 | 09-11-2013 | 12-11-2013 | Claire Gute   | USA     | Henderson | Kentucky |       42420 | South  | Furniture | Chairs       | Hon Deluxe Fabric Upholstered Stacking Chairs, Rounded Back | 731.94 |        3 |        0 | 219.582 |
++----------+----------------+------------+------------+---------------+---------+-----------+----------+-------------+--------+-----------+--------------+-------------------------------------------------------------+--------+----------+----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from wallmart
+    -> where `Postal Code` IN (1000,2000)
+    -> limit 50;
+Empty set (0.00 sec)
+
+mysql> select * from wallmart
+    -> where `Postal Code` IN (10000,20000)
+    -> limit 50;
+Empty set (0.00 sec)
+
+mysql> select * from wallmart
+    -> where `Postal Code` IN (10024,42420)
+    -> limit 50;
++----------+----------------+------------+------------+----------------+---------+---------------+----------+-------------+--------+-----------------+--------------+-------------------------------------------------------------+---------+----------+----------+----------+
+| SerialNo | Order ID       | Order Date | Ship Date  | Customer Name  | Country | City          | State    | Postal Code | Region | Category        | Sub-Category | Product Name                                                | Sales   | Quantity | Discount | Profit   |
++----------+----------------+------------+------------+----------------+---------+---------------+----------+-------------+--------+-----------------+--------------+-------------------------------------------------------------+---------+----------+----------+----------+
+|        0 | CA-2013-152156 | 09-11-2013 | 12-11-2013 | Claire Gute    | USA     | Henderson     | Kentucky |       42420 | South  | Furniture       | Bookcases    | Bush Somerset Collection Bookcase                           |  261.96 |        2 |        0 |  41.9136 |
+|        1 | CA-2013-152156 | 09-11-2013 | 12-11-2013 | Claire Gute    | USA     | Henderson     | Kentucky |       42420 | South  | Furniture       | Chairs       | Hon Deluxe Fabric Upholstered Stacking Chairs, Rounded Back |  731.94 |        3 |        0 |  219.582 |
+|       53 | CA-2013-105816 | 12-12-2013 | 18-12-2013 | Janet Molinari | USA     | New York City | New York |       10024 | East   | Office Supplies | Fasteners    | Advantus Push Pins                                          |   15.26 |        7 |        0 |   6.2566 |
+|       54 | CA-2013-105816 | 12-12-2013 | 18-12-2013 | Janet Molinari | USA     | New York City | New York |       10024 | East   | Technology      | Phones       | AT&T CL83451 4-Handset Telephone                            | 1029.95 |        5 |        0 | 298.6855 |
++----------+----------------+------------+------------+----------------+---------+---------------+----------+-------------+--------+-----------------+--------------+-------------------------------------------------------------+---------+----------+----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from wallmart
+    -> where `Postal Code` NOT IN (10024,42420)
+    -> limit 10;
++----------+----------------+------------+------------+-----------------+---------+-----------------+------------+-------------+--------+-----------------+--------------+------------------------------------------------------------------+----------+----------+----------+----------+
+| SerialNo | Order ID       | Order Date | Ship Date  | Customer Name   | Country | City            | State      | Postal Code | Region | Category        | Sub-Category | Product Name                                                     | Sales    | Quantity | Discount | Profit   |
++----------+----------------+------------+------------+-----------------+---------+-----------------+------------+-------------+--------+-----------------+--------------+------------------------------------------------------------------+----------+----------+----------+----------+
+|        2 | CA-2013-138688 | 13-06-2013 | 17-06-2013 | Darrin Van Huff | USA     | Los Angeles     | California |       90036 | West   | Office Supplies | Labels       | Self-Adhesive Address Labels for Typewriters by Universal        |    14.62 |        2 |        0 |   6.8714 |
+|        3 | US-2012-108966 | 11-10-2012 | 18-10-2012 | Sean O'Donnell  | USA     | Fort Lauderdale | Florida    |       33311 | South  | Furniture       | Tables       | Bretford CR4500 Series Slim Rectangular Table                    | 957.5775 |        5 |     0.45 | -383.031 |
+|        4 | US-2012-108966 | 11-10-2012 | 18-10-2012 | Sean O'Donnell  | USA     | Fort Lauderdale | Florida    |       33311 | South  | Office Supplies | Storage      | Eldon Fold 'N Roll Cart System                                   |   22.368 |        2 |      0.2 |   2.5164 |
+|        5 | CA-2011-115812 | 09-06-2011 | 14-06-2011 | Brosina Hoffman | USA     | Los Angeles     | California |       90032 | West   | Furniture       | Furnishings  | Eldon Expressions Wood and Plastic Desk Accessories, Cherry Wood |    48.86 |        7 |        0 |  14.1694 |
+|        6 | CA-2011-115812 | 09-06-2011 | 14-06-2011 | Brosina Hoffman | USA     | Los Angeles     | California |       90032 | West   | Office Supplies | Art          | Newell 322                                                       |     7.28 |        4 |        0 |   1.9656 |
+|        7 | CA-2011-115812 | 09-06-2011 | 14-06-2011 | Brosina Hoffman | USA     | Los Angeles     | California |       90032 | West   | Technology      | Phones       | Mitel 5320 IP Phone VoIP phone                                   |  907.152 |        6 |      0.2 |  90.7152 |
+|        8 | CA-2011-115812 | 09-06-2011 | 14-06-2011 | Brosina Hoffman | USA     | Los Angeles     | California |       90032 | West   | Office Supplies | Binders      | DXL Angle-View Binders with Locking Rings by Samsill             |   18.504 |        3 |      0.2 |   5.7825 |
+|        9 | CA-2011-115812 | 09-06-2011 | 14-06-2011 | Brosina Hoffman | USA     | Los Angeles     | California |       90032 | West   | Office Supplies | Appliances   | Belkin F5C206VTEL 6 Outlet Surge                                 |    114.9 |        5 |        0 |    34.47 |
+|       10 | CA-2011-115812 | 09-06-2011 | 14-06-2011 | Brosina Hoffman | USA     | Los Angeles     | California |       90032 | West   | Furniture       | Tables       | Chromcraft Rectangular Conference Tables                         | 1706.184 |        9 |      0.2 |  85.3092 |
+|       11 | CA-2011-115812 | 09-06-2011 | 14-06-2011 | Brosina Hoffman | USA     | Los Angeles     | California |       90032 | West   | Technology      | Phones       | Konftel 250 ConferenceÂ phoneÂ - Charcoal black                  |  911.424 |        4 |      0.2 |  68.3568 |
++----------+----------------+------------+------------+-----------------+---------+-----------------+------------+-------------+--------+-----------------+--------------+------------------------------------------------------------------+----------+----------+----------+----------+
+10 rows in set (0.00 sec)

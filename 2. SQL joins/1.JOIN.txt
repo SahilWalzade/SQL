@@ -1,0 +1,77 @@
+mysql> select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks
+    -> from australian_states
+    -> join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code ;
++------------+-------------------+-------------------+
+| state_code | state_name        | number_of_attacks |
++------------+-------------------+-------------------+
+| SA         | South Australia   |                21 |
+| VIC        | Victoria          |                67 |
+| TAS        | Tasmania          |                30 |
+| NSW        | New South Whales  |                19 |
+| QLD        | Queensland        |                40 |
+| WA         | Western Australia |                37 |
++------------+-------------------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select australian_states.* , dropbear_attacks.*
+    -> from australian_states
+    -> join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code ;
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+
+| state_code | state_name        | population | area_km2 | state_code | state_name        | animal   | number_of_attacks |
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+
+| SA         | South Australia   |    1751693 |  1044353 | SA         | South Australia   | dropbear |                21 |
+| VIC        | Victoria          |    6594804 |   237657 | VIC        | Victoria          | dropbear |                67 |
+| TAS        | Tasmania          |     534281 |    90758 | TAS        | Tasmania          | dropbear |                30 |
+| NSW        | New South Whales  |    8089526 |   809952 | NSW        | New South Whales  | dropbear |                19 |
+| QLD        | Queensland        |    5095100 |  1851736 | QLD        | Queensland        | dropbear |                40 |
+| WA         | Western Australia |    2621680 |  2642753 | WA         | Western Australia | dropbear |                37 |
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select australian_states.* , dropbear_attacks.* ,magpie_attacks.*
+    -> from australian_states
+    -> join dropbear_attacks,magpie_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on australian_states.state_code = dropbear_attacks.state_code' at line 4
+mysql> select australian_states.* , dropbear_attacks.* ,magpie_attacks.*
+    -> from australian_states
+    -> join dropbear_attacks,magpie_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code AND australian_states.state_code = magpie_attacks.state_code ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on australian_states.state_code = dropbear_attacks.state_code AND australian_sta' at line 4
+mysql> select australian_states.* , dropbear_attacks.* ,magpie_attacks.*
+    -> from australian_states
+    -> join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code
+    -> join magpie_attacks
+    -> on australian_states.state_code = magpie_attacks.state_code ;
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+------------+-------------------+--------+-------------------+
+| state_code | state_name        | population | area_km2 | state_code | state_name        | animal   | number_of_attacks | state_code | state_name        | animal | number_of_attacks |
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+------------+-------------------+--------+-------------------+
+| SA         | South Australia   |    1751693 |  1044353 | SA         | South Australia   | dropbear |                21 | SA         | South Australia   | magpie |               154 |
+| VIC        | Victoria          |    6594804 |   237657 | VIC        | Victoria          | dropbear |                67 | VIC        | Victoria          | magpie |               972 |
+| TAS        | Tasmania          |     534281 |    90758 | TAS        | Tasmania          | dropbear |                30 | TAS        | Tasmania          | magpie |                 0 |
+| NSW        | New South Whales  |    8089526 |   809952 | NSW        | New South Whales  | dropbear |                19 | NSW        | New South Whales  | magpie |               823 |
+| QLD        | Queensland        |    5095100 |  1851736 | QLD        | Queensland        | dropbear |                40 | QLD        | Queensland        | magpie |              1141 |
+| WA         | Western Australia |    2621680 |  2642753 | WA         | Western Australia | dropbear |                37 | WA         | Western Australia | magpie |               287 |
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+------------+-------------------+--------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select australian_states.state_code ,australian_states.state_name, dropbear_attacks.number_of_attacks + magpie_attacks.number_of_attacks as total_number_of_attacks
+    -> from australian_states
+    -> join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code
+    -> join magpie_attacks
+    -> on australian_states.state_code = magpie_attacks.state_code ;
++------------+-------------------+-------------------------+
+| state_code | state_name        | total_number_of_attacks |
++------------+-------------------+-------------------------+
+| SA         | South Australia   |                     175 |
+| VIC        | Victoria          |                    1039 |
+| TAS        | Tasmania          |                      30 |
+| NSW        | New South Whales  |                     842 |
+| QLD        | Queensland        |                    1181 |
+| WA         | Western Australia |                     324 |
++------------+-------------------+-------------------------+
+6 rows in set (0.00 sec)

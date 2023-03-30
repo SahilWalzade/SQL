@@ -1,0 +1,120 @@
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> Having sum(population) >= 1000000;
++------------------+
+| total_population |
++------------------+
+|         25359662 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> Having sum(population) <= 1000000;
+Empty set (0.00 sec)
+
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> Having sum(population) <= 1751693;
+Empty set (0.00 sec)
+
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> Having sum(population) >= 1751693;
++------------------+
+| total_population |
++------------------+
+|         25359662 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> Having sum(population) > 1751693;
++------------------+
+| total_population |
++------------------+
+|         25359662 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> Having sum(population) > 1751691;
++------------------+
+| total_population |
++------------------+
+|         25359662 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> Having sum(population) < 1751693;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Having sum(population) < 1751693' at line 1
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> Having sum(population) < 1751693;
+Empty set (0.00 sec)
+
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> Having sum(population) = 1751693;
+Empty set (0.00 sec)
+
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> Having sum(population) > 5995100;
++------------------+
+| total_population |
++------------------+
+|         25359662 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> Having sum(population) < 5095100;
+Empty set (0.00 sec)
+
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> Having sum(population) = 5095100;
+Empty set (0.00 sec)
+
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> Having sum(population) > 5095100;
++------------------+
+| total_population |
++------------------+
+|         25359662 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> group by 1
+    -> Having sum(population) > 5095100;
+ERROR 1056 (42000): Can't group on 'total_population'
+mysql> select australian_state.state_name, sum(population) as total_population
+    -> from australian_states
+    -> group by 1
+    -> Having sum(population) > 5095100;
+ERROR 1054 (42S22): Unknown column 'australian_state.state_name' in 'field list'
+mysql> select sum(population) as total_population
+    -> from australian_states
+    -> group by 1
+    -> Having sum(population) > 5095100;
+ERROR 1056 (42000): Can't group on 'total_population'
+mysql> select australian_states.state_name, sum(population) as total_population
+    -> from australian_states
+    -> group by 1
+    -> Having sum(population) > 5095100;
++------------------+------------------+
+| state_name       | total_population |
++------------------+------------------+
+| Victoria         |          6594804 |
+| New South Whales |          8089526 |
++------------------+------------------+
+2 rows in set (0.00 sec)
+
+mysql>

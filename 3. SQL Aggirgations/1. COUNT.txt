@@ -1,0 +1,75 @@
+
+mysql> select count(*)
+    -> from ausrtalian_states
+    -> where population>=1000000;
+ERROR 1146 (42S02): Table 'udacity.ausrtalian_states' doesn't exist
+mysql> select count(*)
+    -> from ausrtalian_states.population
+    -> where population>=1000000;
+ERROR 1049 (42000): Unknown database 'ausrtalian_states'
+mysql> select count(*)
+    -> from australian_states
+    -> where population>=1000000;
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+1 row in set (0.05 sec)
+
+mysql> select count(*)
+    -> from ausrtalian_states
+    -> where population>=1000000;
+ERROR 1146 (42S02): Table 'udacity.ausrtalian_states' doesn't exist
+mysql> select count(*)
+    -> from australian_states
+    -> where population>=1000000;
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*)
+    -> from australian_states.population
+    -> where population>=1000000;
+ERROR 1049 (42000): Unknown database 'australian_states'
+mysql> select count(population)
+    -> from australian_states
+    -> where population>=1000000;
++-------------------+
+| count(population) |
++-------------------+
+|                 5 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select count(population)
+    -> from australian_states;
++-------------------+
+| count(population) |
++-------------------+
+|                 8 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select count(population) as p_more
+    -> from australian_states;
++--------+
+| p_more |
++--------+
+|      8 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks, count( dropbear_attacks.number_of_attacks)
+    ->  from australian_states
+    -> left join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code
+    -> AND australian_states.state_code = "SA";
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'udacity.australian_states.state_code'; this is incompatible with sql_mode=only_full_group_by
+mysql> select sum(population) as total_population
+    -> from australian_state
+    -> ;
+ERROR 1146 (42S02): Table 'udacity.australian_state'

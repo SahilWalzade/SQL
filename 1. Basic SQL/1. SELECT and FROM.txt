@@ -1,0 +1,1192 @@
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 36
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| udacity            |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use udacity;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| wallmart          |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM wallmart LIMIT 5;
++-----------------+----------------+------------+------------+-----------------+---------+-----------------+------------+-------------+--------+-----------------+--------------+-------------------------------------------------------------+----------+----------+----------+----------+
+| MyUnknownColumn | Order ID       | Order Date | Ship Date  | Customer Name   | Country | City            | State      | Postal Code | Region | Category        | Sub-Category | Product Name                                                | Sales    | Quantity | Discount | Profit   |
++-----------------+----------------+------------+------------+-----------------+---------+-----------------+------------+-------------+--------+-----------------+--------------+-------------------------------------------------------------+----------+----------+----------+----------+
+|               0 | CA-2013-152156 | 09-11-2013 | 12-11-2013 | Claire Gute     | USA     | Henderson       | Kentucky   |       42420 | South  | Furniture       | Bookcases    | Bush Somerset Collection Bookcase                           |   261.96 |        2 |        0 |  41.9136 |
+|               1 | CA-2013-152156 | 09-11-2013 | 12-11-2013 | Claire Gute     | USA     | Henderson       | Kentucky   |       42420 | South  | Furniture       | Chairs       | Hon Deluxe Fabric Upholstered Stacking Chairs, Rounded Back |   731.94 |        3 |        0 |  219.582 |
+|               2 | CA-2013-138688 | 13-06-2013 | 17-06-2013 | Darrin Van Huff | USA     | Los Angeles     | California |       90036 | West   | Office Supplies | Labels       | Self-Adhesive Address Labels for Typewriters by Universal   |    14.62 |        2 |        0 |   6.8714 |
+|               3 | US-2012-108966 | 11-10-2012 | 18-10-2012 | Sean O'Donnell  | USA     | Fort Lauderdale | Florida    |       33311 | South  | Furniture       | Tables       | Bretford CR4500 Series Slim Rectangular Table               | 957.5775 |        5 |     0.45 | -383.031 |
+|               4 | US-2012-108966 | 11-10-2012 | 18-10-2012 | Sean O'Donnell  | USA     | Fort Lauderdale | Florida    |       33311 | South  | Office Supplies | Storage      | Eldon Fold 'N Roll Cart System                              |   22.368 |        2 |      0.2 |   2.5164 |
++-----------------+----------------+------------+------------+-----------------+---------+-----------------+------------+-------------+--------+-----------------+--------------+-------------------------------------------------------------+----------+----------+----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT City FROM wallmart;
++-----------------+
+| City            |
++-----------------+
+| Henderson       |
+| Henderson       |
+| Los Angeles     |
+| Fort Lauderdale |
+| Fort Lauderdale |
+| Los Angeles     |
+| Los Angeles     |
+| Los Angeles     |
+| Los Angeles     |
+| Los Angeles     |
+| Los Angeles     |
+| Los Angeles     |
+| Concord         |
+| Seattle         |
+| Fort Worth      |
+| Fort Worth      |
+| Madison         |
+| West Jordan     |
+| San Francisco   |
+| San Francisco   |
+| San Francisco   |
+| Fremont         |
+| Fremont         |
+| Philadelphia    |
+| Orem            |
+| Los Angeles     |
+| Los Angeles     |
+| Philadelphia    |
+| Philadelphia    |
+| Philadelphia    |
+| Philadelphia    |
+| Philadelphia    |
+| Philadelphia    |
+| Houston         |
+| Richardson      |
+| Richardson      |
+| Houston         |
+| Houston         |
+| Houston         |
+| Houston         |
+| Naperville      |
+| Los Angeles     |
+| Melbourne       |
+| Eagan           |
+| Eagan           |
+| Westland        |
+| Dover           |
+| Dover           |
+| New Albany      |
+| New Albany      |
+| New Albany      |
+| New Albany      |
+| New York City   |
+| New York City   |
+| Troy            |
+| Troy            |
+| Troy            |
+| Troy            |
+| Troy            |
+| Troy            |
+| Troy            |
+| Los Angeles     |
+| Los Angeles     |
+| Los Angeles     |
+| Los Angeles     |
+| Chicago         |
+| Gilbert         |
+| Gilbert         |
+| Springfield     |
+| New York City   |
+| Jackson         |
+| Memphis         |
+| Memphis         |
+| Memphis         |
+| Houston         |
+| Houston         |
+| Houston         |
+| Decatur         |
+| Decatur         |
+| San Francisco   |
+| San Francisco   |
+| Durham          |
+| Chicago         |
+| Columbia        |
+| Rochester       |
+| Rochester       |
+| Houston         |
+| Los Angeles     |
+| Los Angeles     |
+| Los Angeles     |
+| Minneapolis     |
+| Minneapolis     |
+| Minneapolis     |
+| Portland        |
+| New York City   |
+| San Francisco   |
+| Saint Paul      |
+| Chicago         |
+| Chicago         |
+| Chicago         |
+| Rochester       |
+| Aurora          |
+| Aurora          |
+| Charlotte       |
+| Charlotte       |
+| Charlotte       |
+| Orland Park     |
+| New York City   |
+| Urbandale       |
+| Urbandale       |
+| Columbus        |
+| Columbus        |
+| Columbus        |
+| Columbus        |
+| Seattle         |
+| Bristol         |
+| Wilmington      |
+| Wilmington      |
+| Wilmington      |
+| Wilmington      |
+| Wilmington      |
+| Houston         |
+| Bloomington     |
+| Phoenix         |
+| Phoenix         |
+| Los Angeles     |
+| Los Angeles     |
+| Columbus        |
+| Columbus        |
+| Columbus        |
+| Roseville       |
+| Roseville       |
+| Roseville       |
+| Roseville       |
++-----------------+
+134 rows in set (0.00 sec)
+
+
+mysql> SELECT Country, City  from wallmart;
++---------+-----------------+
+| Country | City            |
++---------+-----------------+
+| USA     | Henderson       |
+| USA     | Henderson       |
+| USA     | Los Angeles     |
+| USA     | Fort Lauderdale |
+| USA     | Fort Lauderdale |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Concord         |
+| USA     | Seattle         |
+| USA     | Fort Worth      |
+| USA     | Fort Worth      |
+| USA     | Madison         |
+| USA     | West Jordan     |
+| USA     | San Francisco   |
+| USA     | San Francisco   |
+| USA     | San Francisco   |
+| USA     | Fremont         |
+| USA     | Fremont         |
+| USA     | Philadelphia    |
+| USA     | Orem            |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Philadelphia    |
+| USA     | Philadelphia    |
+| USA     | Philadelphia    |
+| USA     | Philadelphia    |
+| USA     | Philadelphia    |
+| USA     | Philadelphia    |
+| USA     | Houston         |
+| USA     | Richardson      |
+| USA     | Richardson      |
+| USA     | Houston         |
+| USA     | Houston         |
+| USA     | Houston         |
+| USA     | Houston         |
+| USA     | Naperville      |
+| USA     | Los Angeles     |
+| USA     | Melbourne       |
+| USA     | Eagan           |
+| USA     | Eagan           |
+| USA     | Westland        |
+| USA     | Dover           |
+| USA     | Dover           |
+| USA     | New Albany      |
+| USA     | New Albany      |
+| USA     | New Albany      |
+| USA     | New Albany      |
+| USA     | New York City   |
+| USA     | New York City   |
+| USA     | Troy            |
+| USA     | Troy            |
+| USA     | Troy            |
+| USA     | Troy            |
+| USA     | Troy            |
+| USA     | Troy            |
+| USA     | Troy            |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Chicago         |
+| USA     | Gilbert         |
+| USA     | Gilbert         |
+| USA     | Springfield     |
+| USA     | New York City   |
+| USA     | Jackson         |
+| USA     | Memphis         |
+| USA     | Memphis         |
+| USA     | Memphis         |
+| USA     | Houston         |
+| USA     | Houston         |
+| USA     | Houston         |
+| USA     | Decatur         |
+| USA     | Decatur         |
+| USA     | San Francisco   |
+| USA     | San Francisco   |
+| USA     | Durham          |
+| USA     | Chicago         |
+| USA     | Columbia        |
+| USA     | Rochester       |
+| USA     | Rochester       |
+| USA     | Houston         |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Minneapolis     |
+| USA     | Minneapolis     |
+| USA     | Minneapolis     |
+| USA     | Portland        |
+| USA     | New York City   |
+| USA     | San Francisco   |
+| USA     | Saint Paul      |
+| USA     | Chicago         |
+| USA     | Chicago         |
+| USA     | Chicago         |
+| USA     | Rochester       |
+| USA     | Aurora          |
+| USA     | Aurora          |
+| USA     | Charlotte       |
+| USA     | Charlotte       |
+| USA     | Charlotte       |
+| USA     | Orland Park     |
+| USA     | New York City   |
+| USA     | Urbandale       |
+| USA     | Urbandale       |
+| USA     | Columbus        |
+| USA     | Columbus        |
+| USA     | Columbus        |
+| USA     | Columbus        |
+| USA     | Seattle         |
+| USA     | Bristol         |
+| USA     | Wilmington      |
+| USA     | Wilmington      |
+| USA     | Wilmington      |
+| USA     | Wilmington      |
+| USA     | Wilmington      |
+| USA     | Houston         |
+| USA     | Bloomington     |
+| USA     | Phoenix         |
+| USA     | Phoenix         |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Columbus        |
+| USA     | Columbus        |
+| USA     | Columbus        |
+| USA     | Roseville       |
+| USA     | Roseville       |
+| USA     | Roseville       |
+| USA     | Roseville       |
++---------+-----------------+
+134 rows in set (0.00 sec)
+
+ysql> SELECT Country, City  from wallmart;
++---------+-----------------+
+| Country | City            |
++---------+-----------------+
+| USA     | Henderson       |
+| USA     | Henderson       |
+| USA     | Los Angeles     |
+| USA     | Fort Lauderdale |
+| USA     | Fort Lauderdale |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Concord         |
+| USA     | Seattle         |
+| USA     | Fort Worth      |
+| USA     | Fort Worth      |
+| USA     | Madison         |
+| USA     | West Jordan     |
+| USA     | San Francisco   |
+| USA     | San Francisco   |
+| USA     | San Francisco   |
+| USA     | Fremont         |
+| USA     | Fremont         |
+| USA     | Philadelphia    |
+| USA     | Orem            |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Philadelphia    |
+| USA     | Philadelphia    |
+| USA     | Philadelphia    |
+| USA     | Philadelphia    |
+| USA     | Philadelphia    |
+| USA     | Philadelphia    |
+| USA     | Houston         |
+| USA     | Richardson      |
+| USA     | Richardson      |
+| USA     | Houston         |
+| USA     | Houston         |
+| USA     | Houston         |
+| USA     | Houston         |
+| USA     | Naperville      |
+| USA     | Los Angeles     |
+| USA     | Melbourne       |
+| USA     | Eagan           |
+| USA     | Eagan           |
+| USA     | Westland        |
+| USA     | Dover           |
+| USA     | Dover           |
+| USA     | New Albany      |
+| USA     | New Albany      |
+| USA     | New Albany      |
+| USA     | New Albany      |
+| USA     | New York City   |
+| USA     | New York City   |
+| USA     | Troy            |
+| USA     | Troy            |
+| USA     | Troy            |
+| USA     | Troy            |
+| USA     | Troy            |
+| USA     | Troy            |
+| USA     | Troy            |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Chicago         |
+| USA     | Gilbert         |
+| USA     | Gilbert         |
+| USA     | Springfield     |
+| USA     | New York City   |
+| USA     | Jackson         |
+| USA     | Memphis         |
+| USA     | Memphis         |
+| USA     | Memphis         |
+| USA     | Houston         |
+| USA     | Houston         |
+| USA     | Houston         |
+| USA     | Decatur         |
+| USA     | Decatur         |
+| USA     | San Francisco   |
+| USA     | San Francisco   |
+| USA     | Durham          |
+| USA     | Chicago         |
+| USA     | Columbia        |
+| USA     | Rochester       |
+| USA     | Rochester       |
+| USA     | Houston         |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Minneapolis     |
+| USA     | Minneapolis     |
+| USA     | Minneapolis     |
+| USA     | Portland        |
+| USA     | New York City   |
+| USA     | San Francisco   |
+| USA     | Saint Paul      |
+| USA     | Chicago         |
+| USA     | Chicago         |
+| USA     | Chicago         |
+| USA     | Rochester       |
+| USA     | Aurora          |
+| USA     | Aurora          |
+| USA     | Charlotte       |
+| USA     | Charlotte       |
+| USA     | Charlotte       |
+| USA     | Orland Park     |
+| USA     | New York City   |
+| USA     | Urbandale       |
+| USA     | Urbandale       |
+| USA     | Columbus        |
+| USA     | Columbus        |
+| USA     | Columbus        |
+| USA     | Columbus        |
+| USA     | Seattle         |
+| USA     | Bristol         |
+| USA     | Wilmington      |
+| USA     | Wilmington      |
+| USA     | Wilmington      |
+| USA     | Wilmington      |
+| USA     | Wilmington      |
+| USA     | Houston         |
+| USA     | Bloomington     |
+| USA     | Phoenix         |
+| USA     | Phoenix         |
+| USA     | Los Angeles     |
+| USA     | Los Angeles     |
+| USA     | Columbus        |
+| USA     | Columbus        |
+| USA     | Columbus        |
+| USA     | Roseville       |
+| USA     | Roseville       |
+| USA     | Roseville       |
+| USA     | Roseville       |
++---------+-----------------+
+134 rows in set (0.00 sec)
+
+mysql> SELECT 'Order ID',Country, City  from wallmart;
++----------+---------+-----------------+
+| Order ID | Country | City            |
++----------+---------+-----------------+
+| Order ID | USA     | Henderson       |
+| Order ID | USA     | Henderson       |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Fort Lauderdale |
+| Order ID | USA     | Fort Lauderdale |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Concord         |
+| Order ID | USA     | Seattle         |
+| Order ID | USA     | Fort Worth      |
+| Order ID | USA     | Fort Worth      |
+| Order ID | USA     | Madison         |
+| Order ID | USA     | West Jordan     |
+| Order ID | USA     | San Francisco   |
+| Order ID | USA     | San Francisco   |
+| Order ID | USA     | San Francisco   |
+| Order ID | USA     | Fremont         |
+| Order ID | USA     | Fremont         |
+| Order ID | USA     | Philadelphia    |
+| Order ID | USA     | Orem            |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Philadelphia    |
+| Order ID | USA     | Philadelphia    |
+| Order ID | USA     | Philadelphia    |
+| Order ID | USA     | Philadelphia    |
+| Order ID | USA     | Philadelphia    |
+| Order ID | USA     | Philadelphia    |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Richardson      |
+| Order ID | USA     | Richardson      |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Naperville      |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Melbourne       |
+| Order ID | USA     | Eagan           |
+| Order ID | USA     | Eagan           |
+| Order ID | USA     | Westland        |
+| Order ID | USA     | Dover           |
+| Order ID | USA     | Dover           |
+| Order ID | USA     | New Albany      |
+| Order ID | USA     | New Albany      |
+| Order ID | USA     | New Albany      |
+| Order ID | USA     | New Albany      |
+| Order ID | USA     | New York City   |
+| Order ID | USA     | New York City   |
+| Order ID | USA     | Troy            |
+| Order ID | USA     | Troy            |
+| Order ID | USA     | Troy            |
+| Order ID | USA     | Troy            |
+| Order ID | USA     | Troy            |
+| Order ID | USA     | Troy            |
+| Order ID | USA     | Troy            |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Chicago         |
+| Order ID | USA     | Gilbert         |
+| Order ID | USA     | Gilbert         |
+| Order ID | USA     | Springfield     |
+| Order ID | USA     | New York City   |
+| Order ID | USA     | Jackson         |
+| Order ID | USA     | Memphis         |
+| Order ID | USA     | Memphis         |
+| Order ID | USA     | Memphis         |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Decatur         |
+| Order ID | USA     | Decatur         |
+| Order ID | USA     | San Francisco   |
+| Order ID | USA     | San Francisco   |
+| Order ID | USA     | Durham          |
+| Order ID | USA     | Chicago         |
+| Order ID | USA     | Columbia        |
+| Order ID | USA     | Rochester       |
+| Order ID | USA     | Rochester       |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Minneapolis     |
+| Order ID | USA     | Minneapolis     |
+| Order ID | USA     | Minneapolis     |
+| Order ID | USA     | Portland        |
+| Order ID | USA     | New York City   |
+| Order ID | USA     | San Francisco   |
+| Order ID | USA     | Saint Paul      |
+| Order ID | USA     | Chicago         |
+| Order ID | USA     | Chicago         |
+| Order ID | USA     | Chicago         |
+| Order ID | USA     | Rochester       |
+| Order ID | USA     | Aurora          |
+| Order ID | USA     | Aurora          |
+| Order ID | USA     | Charlotte       |
+| Order ID | USA     | Charlotte       |
+| Order ID | USA     | Charlotte       |
+| Order ID | USA     | Orland Park     |
+| Order ID | USA     | New York City   |
+| Order ID | USA     | Urbandale       |
+| Order ID | USA     | Urbandale       |
+| Order ID | USA     | Columbus        |
+| Order ID | USA     | Columbus        |
+| Order ID | USA     | Columbus        |
+| Order ID | USA     | Columbus        |
+| Order ID | USA     | Seattle         |
+| Order ID | USA     | Bristol         |
+| Order ID | USA     | Wilmington      |
+| Order ID | USA     | Wilmington      |
+| Order ID | USA     | Wilmington      |
+| Order ID | USA     | Wilmington      |
+| Order ID | USA     | Wilmington      |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Bloomington     |
+| Order ID | USA     | Phoenix         |
+| Order ID | USA     | Phoenix         |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Columbus        |
+| Order ID | USA     | Columbus        |
+| Order ID | USA     | Columbus        |
+| Order ID | USA     | Roseville       |
+| Order ID | USA     | Roseville       |
+| Order ID | USA     | Roseville       |
+| Order ID | USA     | Roseville       |
++----------+---------+-----------------+
+134 rows in set (0.00 sec)
+
+mysql> SELECT "Order ID",Country, City  from wallmart;
++----------+---------+-----------------+
+| Order ID | Country | City            |
++----------+---------+-----------------+
+| Order ID | USA     | Henderson       |
+| Order ID | USA     | Henderson       |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Fort Lauderdale |
+| Order ID | USA     | Fort Lauderdale |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Concord         |
+| Order ID | USA     | Seattle         |
+| Order ID | USA     | Fort Worth      |
+| Order ID | USA     | Fort Worth      |
+| Order ID | USA     | Madison         |
+| Order ID | USA     | West Jordan     |
+| Order ID | USA     | San Francisco   |
+| Order ID | USA     | San Francisco   |
+| Order ID | USA     | San Francisco   |
+| Order ID | USA     | Fremont         |
+| Order ID | USA     | Fremont         |
+| Order ID | USA     | Philadelphia    |
+| Order ID | USA     | Orem            |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Philadelphia    |
+| Order ID | USA     | Philadelphia    |
+| Order ID | USA     | Philadelphia    |
+| Order ID | USA     | Philadelphia    |
+| Order ID | USA     | Philadelphia    |
+| Order ID | USA     | Philadelphia    |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Richardson      |
+| Order ID | USA     | Richardson      |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Naperville      |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Melbourne       |
+| Order ID | USA     | Eagan           |
+| Order ID | USA     | Eagan           |
+| Order ID | USA     | Westland        |
+| Order ID | USA     | Dover           |
+| Order ID | USA     | Dover           |
+| Order ID | USA     | New Albany      |
+| Order ID | USA     | New Albany      |
+| Order ID | USA     | New Albany      |
+| Order ID | USA     | New Albany      |
+| Order ID | USA     | New York City   |
+| Order ID | USA     | New York City   |
+| Order ID | USA     | Troy            |
+| Order ID | USA     | Troy            |
+| Order ID | USA     | Troy            |
+| Order ID | USA     | Troy            |
+| Order ID | USA     | Troy            |
+| Order ID | USA     | Troy            |
+| Order ID | USA     | Troy            |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Chicago         |
+| Order ID | USA     | Gilbert         |
+| Order ID | USA     | Gilbert         |
+| Order ID | USA     | Springfield     |
+| Order ID | USA     | New York City   |
+| Order ID | USA     | Jackson         |
+| Order ID | USA     | Memphis         |
+| Order ID | USA     | Memphis         |
+| Order ID | USA     | Memphis         |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Decatur         |
+| Order ID | USA     | Decatur         |
+| Order ID | USA     | San Francisco   |
+| Order ID | USA     | San Francisco   |
+| Order ID | USA     | Durham          |
+| Order ID | USA     | Chicago         |
+| Order ID | USA     | Columbia        |
+| Order ID | USA     | Rochester       |
+| Order ID | USA     | Rochester       |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Minneapolis     |
+| Order ID | USA     | Minneapolis     |
+| Order ID | USA     | Minneapolis     |
+| Order ID | USA     | Portland        |
+| Order ID | USA     | New York City   |
+| Order ID | USA     | San Francisco   |
+| Order ID | USA     | Saint Paul      |
+| Order ID | USA     | Chicago         |
+| Order ID | USA     | Chicago         |
+| Order ID | USA     | Chicago         |
+| Order ID | USA     | Rochester       |
+| Order ID | USA     | Aurora          |
+| Order ID | USA     | Aurora          |
+| Order ID | USA     | Charlotte       |
+| Order ID | USA     | Charlotte       |
+| Order ID | USA     | Charlotte       |
+| Order ID | USA     | Orland Park     |
+| Order ID | USA     | New York City   |
+| Order ID | USA     | Urbandale       |
+| Order ID | USA     | Urbandale       |
+| Order ID | USA     | Columbus        |
+| Order ID | USA     | Columbus        |
+| Order ID | USA     | Columbus        |
+| Order ID | USA     | Columbus        |
+| Order ID | USA     | Seattle         |
+| Order ID | USA     | Bristol         |
+| Order ID | USA     | Wilmington      |
+| Order ID | USA     | Wilmington      |
+| Order ID | USA     | Wilmington      |
+| Order ID | USA     | Wilmington      |
+| Order ID | USA     | Wilmington      |
+| Order ID | USA     | Houston         |
+| Order ID | USA     | Bloomington     |
+| Order ID | USA     | Phoenix         |
+| Order ID | USA     | Phoenix         |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Los Angeles     |
+| Order ID | USA     | Columbus        |
+| Order ID | USA     | Columbus        |
+| Order ID | USA     | Columbus        |
+| Order ID | USA     | Roseville       |
+| Order ID | USA     | Roseville       |
+| Order ID | USA     | Roseville       |
+| Order ID | USA     | Roseville       |
++----------+---------+-----------------+
+134 rows in set (0.00 sec)
+
+mysql> SELECT 'Order ID','Country', City  from wallmart;
++----------+---------+-----------------+
+| Order ID | Country | City            |
++----------+---------+-----------------+
+| Order ID | Country | Henderson       |
+| Order ID | Country | Henderson       |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Fort Lauderdale |
+| Order ID | Country | Fort Lauderdale |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Concord         |
+| Order ID | Country | Seattle         |
+| Order ID | Country | Fort Worth      |
+| Order ID | Country | Fort Worth      |
+| Order ID | Country | Madison         |
+| Order ID | Country | West Jordan     |
+| Order ID | Country | San Francisco   |
+| Order ID | Country | San Francisco   |
+| Order ID | Country | San Francisco   |
+| Order ID | Country | Fremont         |
+| Order ID | Country | Fremont         |
+| Order ID | Country | Philadelphia    |
+| Order ID | Country | Orem            |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Philadelphia    |
+| Order ID | Country | Philadelphia    |
+| Order ID | Country | Philadelphia    |
+| Order ID | Country | Philadelphia    |
+| Order ID | Country | Philadelphia    |
+| Order ID | Country | Philadelphia    |
+| Order ID | Country | Houston         |
+| Order ID | Country | Richardson      |
+| Order ID | Country | Richardson      |
+| Order ID | Country | Houston         |
+| Order ID | Country | Houston         |
+| Order ID | Country | Houston         |
+| Order ID | Country | Houston         |
+| Order ID | Country | Naperville      |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Melbourne       |
+| Order ID | Country | Eagan           |
+| Order ID | Country | Eagan           |
+| Order ID | Country | Westland        |
+| Order ID | Country | Dover           |
+| Order ID | Country | Dover           |
+| Order ID | Country | New Albany      |
+| Order ID | Country | New Albany      |
+| Order ID | Country | New Albany      |
+| Order ID | Country | New Albany      |
+| Order ID | Country | New York City   |
+| Order ID | Country | New York City   |
+| Order ID | Country | Troy            |
+| Order ID | Country | Troy            |
+| Order ID | Country | Troy            |
+| Order ID | Country | Troy            |
+| Order ID | Country | Troy            |
+| Order ID | Country | Troy            |
+| Order ID | Country | Troy            |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Chicago         |
+| Order ID | Country | Gilbert         |
+| Order ID | Country | Gilbert         |
+| Order ID | Country | Springfield     |
+| Order ID | Country | New York City   |
+| Order ID | Country | Jackson         |
+| Order ID | Country | Memphis         |
+| Order ID | Country | Memphis         |
+| Order ID | Country | Memphis         |
+| Order ID | Country | Houston         |
+| Order ID | Country | Houston         |
+| Order ID | Country | Houston         |
+| Order ID | Country | Decatur         |
+| Order ID | Country | Decatur         |
+| Order ID | Country | San Francisco   |
+| Order ID | Country | San Francisco   |
+| Order ID | Country | Durham          |
+| Order ID | Country | Chicago         |
+| Order ID | Country | Columbia        |
+| Order ID | Country | Rochester       |
+| Order ID | Country | Rochester       |
+| Order ID | Country | Houston         |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Minneapolis     |
+| Order ID | Country | Minneapolis     |
+| Order ID | Country | Minneapolis     |
+| Order ID | Country | Portland        |
+| Order ID | Country | New York City   |
+| Order ID | Country | San Francisco   |
+| Order ID | Country | Saint Paul      |
+| Order ID | Country | Chicago         |
+| Order ID | Country | Chicago         |
+| Order ID | Country | Chicago         |
+| Order ID | Country | Rochester       |
+| Order ID | Country | Aurora          |
+| Order ID | Country | Aurora          |
+| Order ID | Country | Charlotte       |
+| Order ID | Country | Charlotte       |
+| Order ID | Country | Charlotte       |
+| Order ID | Country | Orland Park     |
+| Order ID | Country | New York City   |
+| Order ID | Country | Urbandale       |
+| Order ID | Country | Urbandale       |
+| Order ID | Country | Columbus        |
+| Order ID | Country | Columbus        |
+| Order ID | Country | Columbus        |
+| Order ID | Country | Columbus        |
+| Order ID | Country | Seattle         |
+| Order ID | Country | Bristol         |
+| Order ID | Country | Wilmington      |
+| Order ID | Country | Wilmington      |
+| Order ID | Country | Wilmington      |
+| Order ID | Country | Wilmington      |
+| Order ID | Country | Wilmington      |
+| Order ID | Country | Houston         |
+| Order ID | Country | Bloomington     |
+| Order ID | Country | Phoenix         |
+| Order ID | Country | Phoenix         |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Los Angeles     |
+| Order ID | Country | Columbus        |
+| Order ID | Country | Columbus        |
+| Order ID | Country | Columbus        |
+| Order ID | Country | Roseville       |
+| Order ID | Country | Roseville       |
+| Order ID | Country | Roseville       |
+| Order ID | Country | Roseville       |
++----------+---------+-----------------+
+134 rows in set (0.00 sec)
+
+mysql> SELECT `Order ID`,Country, City  from wallmart;
++----------------+---------+-----------------+
+| Order ID       | Country | City            |
++----------------+---------+-----------------+
+| CA-2013-152156 | USA     | Henderson       |
+| CA-2013-152156 | USA     | Henderson       |
+| CA-2013-138688 | USA     | Los Angeles     |
+| US-2012-108966 | USA     | Fort Lauderdale |
+| US-2012-108966 | USA     | Fort Lauderdale |
+| CA-2011-115812 | USA     | Los Angeles     |
+| CA-2011-115812 | USA     | Los Angeles     |
+| CA-2011-115812 | USA     | Los Angeles     |
+| CA-2011-115812 | USA     | Los Angeles     |
+| CA-2011-115812 | USA     | Los Angeles     |
+| CA-2011-115812 | USA     | Los Angeles     |
+| CA-2011-115812 | USA     | Los Angeles     |
+| CA-2014-114412 | USA     | Concord         |
+| CA-2013-161389 | USA     | Seattle         |
+| US-2012-118983 | USA     | Fort Worth      |
+| US-2012-118983 | USA     | Fort Worth      |
+| CA-2011-105893 | USA     | Madison         |
+| CA-2011-167164 | USA     | West Jordan     |
+| CA-2011-143336 | USA     | San Francisco   |
+| CA-2011-143336 | USA     | San Francisco   |
+| CA-2011-143336 | USA     | San Francisco   |
+| CA-2013-137330 | USA     | Fremont         |
+| CA-2013-137330 | USA     | Fremont         |
+| US-2014-156909 | USA     | Philadelphia    |
+| CA-2012-106320 | USA     | Orem            |
+| CA-2013-121755 | USA     | Los Angeles     |
+| CA-2013-121755 | USA     | Los Angeles     |
+| US-2012-150630 | USA     | Philadelphia    |
+| US-2012-150630 | USA     | Philadelphia    |
+| US-2012-150630 | USA     | Philadelphia    |
+| US-2012-150630 | USA     | Philadelphia    |
+| US-2012-150630 | USA     | Philadelphia    |
+| US-2012-150630 | USA     | Philadelphia    |
+| CA-2014-107727 | USA     | Houston         |
+| CA-2013-117590 | USA     | Richardson      |
+| CA-2013-117590 | USA     | Richardson      |
+| CA-2012-117415 | USA     | Houston         |
+| CA-2012-117415 | USA     | Houston         |
+| CA-2012-117415 | USA     | Houston         |
+| CA-2012-117415 | USA     | Houston         |
+| CA-2014-120999 | USA     | Naperville      |
+| CA-2013-101343 | USA     | Los Angeles     |
+| CA-2014-139619 | USA     | Melbourne       |
+| CA-2013-118255 | USA     | Eagan           |
+| CA-2013-118255 | USA     | Eagan           |
+| CA-2011-146703 | USA     | Westland        |
+| CA-2013-169194 | USA     | Dover           |
+| CA-2013-169194 | USA     | Dover           |
+| CA-2012-115742 | USA     | New Albany      |
+| CA-2012-115742 | USA     | New Albany      |
+| CA-2012-115742 | USA     | New Albany      |
+| CA-2012-115742 | USA     | New Albany      |
+| CA-2013-105816 | USA     | New York City   |
+| CA-2013-105816 | USA     | New York City   |
+| CA-2013-111682 | USA     | Troy            |
+| CA-2013-111682 | USA     | Troy            |
+| CA-2013-111682 | USA     | Troy            |
+| CA-2013-111682 | USA     | Troy            |
+| CA-2013-111682 | USA     | Troy            |
+| CA-2013-111682 | USA     | Troy            |
+| CA-2013-111682 | USA     | Troy            |
+| CA-2012-135545 | USA     | Los Angeles     |
+| CA-2012-135545 | USA     | Los Angeles     |
+| CA-2012-135545 | USA     | Los Angeles     |
+| CA-2012-135545 | USA     | Los Angeles     |
+| US-2012-164175 | USA     | Chicago         |
+| CA-2011-106376 | USA     | Gilbert         |
+| CA-2011-106376 | USA     | Gilbert         |
+| CA-2013-119823 | USA     | Springfield     |
+| CA-2013-106075 | USA     | New York City   |
+| CA-2014-114440 | USA     | Jackson         |
+| US-2012-134026 | USA     | Memphis         |
+| US-2012-134026 | USA     | Memphis         |
+| US-2012-134026 | USA     | Memphis         |
+| US-2014-118038 | USA     | Houston         |
+| US-2014-118038 | USA     | Houston         |
+| US-2011-147606 | USA     | Houston         |
+| CA-2013-127208 | USA     | Decatur         |
+| CA-2013-127208 | USA     | Decatur         |
+| CA-2011-139451 | USA     | San Francisco   |
+| CA-2011-139451 | USA     | San Francisco   |
+| CA-2012-149734 | USA     | Durham          |
+| US-2014-119662 | USA     | Chicago         |
+| CA-2014-140088 | USA     | Columbia        |
+| CA-2014-155558 | USA     | Rochester       |
+| CA-2014-155558 | USA     | Rochester       |
+| CA-2013-159695 | USA     | Houston         |
+| CA-2013-109806 | USA     | Los Angeles     |
+| CA-2013-109806 | USA     | Los Angeles     |
+| CA-2013-109806 | USA     | Los Angeles     |
+| CA-2012-149587 | USA     | Minneapolis     |
+| CA-2012-149587 | USA     | Minneapolis     |
+| CA-2012-149587 | USA     | Minneapolis     |
+| US-2014-109484 | USA     | Portland        |
+| CA-2014-161018 | USA     | New York City   |
+| CA-2014-157833 | USA     | San Francisco   |
+| CA-2013-149223 | USA     | Saint Paul      |
+| CA-2013-158568 | USA     | Chicago         |
+| CA-2013-158568 | USA     | Chicago         |
+| CA-2013-158568 | USA     | Chicago         |
+| CA-2013-129903 | USA     | Rochester       |
+| US-2012-156867 | USA     | Aurora          |
+| US-2012-156867 | USA     | Aurora          |
+| CA-2014-119004 | USA     | Charlotte       |
+| CA-2014-119004 | USA     | Charlotte       |
+| CA-2014-119004 | USA     | Charlotte       |
+| CA-2012-129476 | USA     | Orland Park     |
+| CA-2014-146780 | USA     | New York City   |
+| CA-2013-128867 | USA     | Urbandale       |
+| CA-2013-128867 | USA     | Urbandale       |
+| CA-2011-115259 | USA     | Columbus        |
+| CA-2011-115259 | USA     | Columbus        |
+| CA-2011-115259 | USA     | Columbus        |
+| CA-2011-115259 | USA     | Columbus        |
+| CA-2012-110457 | USA     | Seattle         |
+| US-2012-136476 | USA     | Bristol         |
+| CA-2013-103730 | USA     | Wilmington      |
+| CA-2013-103730 | USA     | Wilmington      |
+| CA-2013-103730 | USA     | Wilmington      |
+| CA-2013-103730 | USA     | Wilmington      |
+| CA-2013-103730 | USA     | Wilmington      |
+| US-2011-152030 | USA     | Houston         |
+| US-2011-134614 | USA     | Bloomington     |
+| US-2014-107272 | USA     | Phoenix         |
+| US-2014-107272 | USA     | Phoenix         |
+| US-2013-125969 | USA     | Los Angeles     |
+| US-2013-125969 | USA     | Los Angeles     |
+| US-2014-164147 | USA     | Columbus        |
+| US-2014-164147 | USA     | Columbus        |
+| US-2014-164147 | USA     | Columbus        |
+| CA-2013-145583 | USA     | Roseville       |
+| CA-2013-145583 | USA     | Roseville       |
+| CA-2013-145583 | USA     | Roseville       |
+| CA-2013-145583 | USA     | Roseville       |
++----------------+---------+-----------------+
+134 rows in set (0.00 sec)
+
+
+mysql> SELECT `Order ID`,Country, City  from wallmart;
++----------------+---------+-----------------+
+| Order ID       | Country | City            |
++----------------+---------+-----------------+
+| CA-2013-152156 | USA     | Henderson       |
+| CA-2013-152156 | USA     | Henderson       |
+| CA-2013-138688 | USA     | Los Angeles     |
+| US-2012-108966 | USA     | Fort Lauderdale |
+| US-2012-108966 | USA     | Fort Lauderdale |
+| CA-2011-115812 | USA     | Los Angeles     |
+| CA-2011-115812 | USA     | Los Angeles     |
+| CA-2011-115812 | USA     | Los Angeles     |
+| CA-2011-115812 | USA     | Los Angeles     |
+| CA-2011-115812 | USA     | Los Angeles     |
+| CA-2011-115812 | USA     | Los Angeles     |
+| CA-2011-115812 | USA     | Los Angeles     |
+| CA-2014-114412 | USA     | Concord         |
+| CA-2013-161389 | USA     | Seattle         |
+| US-2012-118983 | USA     | Fort Worth      |
+| US-2012-118983 | USA     | Fort Worth      |
+| CA-2011-105893 | USA     | Madison         |
+| CA-2011-167164 | USA     | West Jordan     |
+| CA-2011-143336 | USA     | San Francisco   |
+| CA-2011-143336 | USA     | San Francisco   |
+| CA-2011-143336 | USA     | San Francisco   |
+| CA-2013-137330 | USA     | Fremont         |
+| CA-2013-137330 | USA     | Fremont         |
+| US-2014-156909 | USA     | Philadelphia    |
+| CA-2012-106320 | USA     | Orem            |
+| CA-2013-121755 | USA     | Los Angeles     |
+| CA-2013-121755 | USA     | Los Angeles     |
+| US-2012-150630 | USA     | Philadelphia    |
+| US-2012-150630 | USA     | Philadelphia    |
+| US-2012-150630 | USA     | Philadelphia    |
+| US-2012-150630 | USA     | Philadelphia    |
+| US-2012-150630 | USA     | Philadelphia    |
+| US-2012-150630 | USA     | Philadelphia    |
+| CA-2014-107727 | USA     | Houston         |
+| CA-2013-117590 | USA     | Richardson      |
+| CA-2013-117590 | USA     | Richardson      |
+| CA-2012-117415 | USA     | Houston         |
+| CA-2012-117415 | USA     | Houston         |
+| CA-2012-117415 | USA     | Houston         |
+| CA-2012-117415 | USA     | Houston         |
+| CA-2014-120999 | USA     | Naperville      |
+| CA-2013-101343 | USA     | Los Angeles     |
+| CA-2014-139619 | USA     | Melbourne       |
+| CA-2013-118255 | USA     | Eagan           |
+| CA-2013-118255 | USA     | Eagan           |
+| CA-2011-146703 | USA     | Westland        |
+| CA-2013-169194 | USA     | Dover           |
+| CA-2013-169194 | USA     | Dover           |
+| CA-2012-115742 | USA     | New Albany      |
+| CA-2012-115742 | USA     | New Albany      |
+| CA-2012-115742 | USA     | New Albany      |
+| CA-2012-115742 | USA     | New Albany      |
+| CA-2013-105816 | USA     | New York City   |
+| CA-2013-105816 | USA     | New York City   |
+| CA-2013-111682 | USA     | Troy            |
+| CA-2013-111682 | USA     | Troy            |
+| CA-2013-111682 | USA     | Troy            |
+| CA-2013-111682 | USA     | Troy            |
+| CA-2013-111682 | USA     | Troy            |
+| CA-2013-111682 | USA     | Troy            |
+| CA-2013-111682 | USA     | Troy            |
+| CA-2012-135545 | USA     | Los Angeles     |
+| CA-2012-135545 | USA     | Los Angeles     |
+| CA-2012-135545 | USA     | Los Angeles     |
+| CA-2012-135545 | USA     | Los Angeles     |
+| US-2012-164175 | USA     | Chicago         |
+| CA-2011-106376 | USA     | Gilbert         |
+| CA-2011-106376 | USA     | Gilbert         |
+| CA-2013-119823 | USA     | Springfield     |
+| CA-2013-106075 | USA     | New York City   |
+| CA-2014-114440 | USA     | Jackson         |
+| US-2012-134026 | USA     | Memphis         |
+| US-2012-134026 | USA     | Memphis         |
+| US-2012-134026 | USA     | Memphis         |
+| US-2014-118038 | USA     | Houston         |
+| US-2014-118038 | USA     | Houston         |
+| US-2011-147606 | USA     | Houston         |
+| CA-2013-127208 | USA     | Decatur         |
+| CA-2013-127208 | USA     | Decatur         |
+| CA-2011-139451 | USA     | San Francisco   |
+| CA-2011-139451 | USA     | San Francisco   |
+| CA-2012-149734 | USA     | Durham          |
+| US-2014-119662 | USA     | Chicago         |
+| CA-2014-140088 | USA     | Columbia        |
+| CA-2014-155558 | USA     | Rochester       |
+| CA-2014-155558 | USA     | Rochester       |
+| CA-2013-159695 | USA     | Houston         |
+| CA-2013-109806 | USA     | Los Angeles     |
+| CA-2013-109806 | USA     | Los Angeles     |
+| CA-2013-109806 | USA     | Los Angeles     |
+| CA-2012-149587 | USA     | Minneapolis     |
+| CA-2012-149587 | USA     | Minneapolis     |
+| CA-2012-149587 | USA     | Minneapolis     |
+| US-2014-109484 | USA     | Portland        |
+| CA-2014-161018 | USA     | New York City   |
+| CA-2014-157833 | USA     | San Francisco   |
+| CA-2013-149223 | USA     | Saint Paul      |
+| CA-2013-158568 | USA     | Chicago         |
+| CA-2013-158568 | USA     | Chicago         |
+| CA-2013-158568 | USA     | Chicago         |
+| CA-2013-129903 | USA     | Rochester       |
+| US-2012-156867 | USA     | Aurora          |
+| US-2012-156867 | USA     | Aurora          |
+| CA-2014-119004 | USA     | Charlotte       |
+| CA-2014-119004 | USA     | Charlotte       |
+| CA-2014-119004 | USA     | Charlotte       |
+| CA-2012-129476 | USA     | Orland Park     |
+| CA-2014-146780 | USA     | New York City   |
+| CA-2013-128867 | USA     | Urbandale       |
+| CA-2013-128867 | USA     | Urbandale       |
+| CA-2011-115259 | USA     | Columbus        |
+| CA-2011-115259 | USA     | Columbus        |
+| CA-2011-115259 | USA     | Columbus        |
+| CA-2011-115259 | USA     | Columbus        |
+| CA-2012-110457 | USA     | Seattle         |
+| US-2012-136476 | USA     | Bristol         |
+| CA-2013-103730 | USA     | Wilmington      |
+| CA-2013-103730 | USA     | Wilmington      |
+| CA-2013-103730 | USA     | Wilmington      |
+| CA-2013-103730 | USA     | Wilmington      |
+| CA-2013-103730 | USA     | Wilmington      |
+| US-2011-152030 | USA     | Houston         |
+| US-2011-134614 | USA     | Bloomington     |
+| US-2014-107272 | USA     | Phoenix         |
+| US-2014-107272 | USA     | Phoenix         |
+| US-2013-125969 | USA     | Los Angeles     |
+| US-2013-125969 | USA     | Los Angeles     |
+| US-2014-164147 | USA     | Columbus        |
+| US-2014-164147 | USA     | Columbus        |
+| US-2014-164147 | USA     | Columbus        |
+| CA-2013-145583 | USA     | Roseville       |
+| CA-2013-145583 | USA     | Roseville       |
+| CA-2013-145583 | USA     | Roseville       |
+| CA-2013-145583 | USA     | Roseville       |
++----------------+---------+-----------------+
+134 rows in set (0.00 sec)
+
+mysql> ALTER TABLE wallmart RENAME COLUMN MyUnknownColumn TO SerialNo;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from wallmart limit 5;
++----------+----------------+------------+------------+-----------------+---------+-----------------+------------+-------------+--------+-----------------+--------------+-------------------------------------------------------------+----------+----------+----------+----------+
+| SerialNo | Order ID       | Order Date | Ship Date  | Customer Name   | Country | City            | State      | Postal Code | Region | Category        | Sub-Category | Product Name                                                | Sales    | Quantity | Discount | Profit   |
++----------+----------------+------------+------------+-----------------+---------+-----------------+------------+-------------+--------+-----------------+--------------+-------------------------------------------------------------+----------+----------+----------+----------+
+|        0 | CA-2013-152156 | 09-11-2013 | 12-11-2013 | Claire Gute     | USA     | Henderson       | Kentucky   |       42420 | South  | Furniture       | Bookcases    | Bush Somerset Collection Bookcase                           |   261.96 |        2 |        0 |  41.9136 |
+|        1 | CA-2013-152156 | 09-11-2013 | 12-11-2013 | Claire Gute     | USA     | Henderson       | Kentucky   |       42420 | South  | Furniture       | Chairs       | Hon Deluxe Fabric Upholstered Stacking Chairs, Rounded Back |   731.94 |        3 |        0 |  219.582 |
+|        2 | CA-2013-138688 | 13-06-2013 | 17-06-2013 | Darrin Van Huff | USA     | Los Angeles     | California |       90036 | West   | Office Supplies | Labels       | Self-Adhesive Address Labels for Typewriters by Universal   |    14.62 |        2 |        0 |   6.8714 |
+|        3 | US-2012-108966 | 11-10-2012 | 18-10-2012 | Sean O'Donnell  | USA     | Fort Lauderdale | Florida    |       33311 | South  | Furniture       | Tables       | Bretford CR4500 Series Slim Rectangular Table               | 957.5775 |        5 |     0.45 | -383.031 |
+|        4 | US-2012-108966 | 11-10-2012 | 18-10-2012 | Sean O'Donnell  | USA     | Fort Lauderdale | Florida    |       33311 | South  | Office Supplies | Storage      | Eldon Fold 'N Roll Cart System                              |   22.368 |        2 |      0.2 |   2.5164 |
++----------+----------------+------------+------------+-----------------+---------+-----------------+------------+-------------+--------+-----------------+--------------+-------------------------------------------------------------+----------+----------+----------+----------+
+5 rows in set (0.00 sec)

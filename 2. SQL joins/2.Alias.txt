@@ -1,0 +1,17 @@
+mysql> select a.* , d.* ,m.*
+    -> from australian_states a
+    -> join dropbear_attacks d
+    -> on a.state_code = d.state_code
+    -> join magpie_attacks m
+    -> on a.state_code = m.state_code ;
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+------------+-------------------+--------+-------------------+
+| state_code | state_name        | population | area_km2 | state_code | state_name        | animal   | number_of_attacks | state_code | state_name        | animal | number_of_attacks |
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+------------+-------------------+--------+-------------------+
+| SA         | South Australia   |    1751693 |  1044353 | SA         | South Australia   | dropbear |                21 | SA         | South Australia   | magpie |               154 |
+| VIC        | Victoria          |    6594804 |   237657 | VIC        | Victoria          | dropbear |                67 | VIC        | Victoria          | magpie |               972 |
+| TAS        | Tasmania          |     534281 |    90758 | TAS        | Tasmania          | dropbear |                30 | TAS        | Tasmania          | magpie |                 0 |
+| NSW        | New South Whales  |    8089526 |   809952 | NSW        | New South Whales  | dropbear |                19 | NSW        | New South Whales  | magpie |               823 |
+| QLD        | Queensland        |    5095100 |  1851736 | QLD        | Queensland        | dropbear |                40 | QLD        | Queensland        | magpie |              1141 |
+| WA         | Western Australia |    2621680 |  2642753 | WA         | Western Australia | dropbear |                37 | WA         | Western Australia | magpie |               287 |
++------------+-------------------+------------+----------+------------+-------------------+----------+-------------------+------------+-------------------+--------+-------------------+
+6 rows in set (0.00 sec)

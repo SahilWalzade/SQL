@@ -1,0 +1,105 @@
+mysql> select a.state_code ,a.state_name, d.number_of_attacks + m.number_of_attacks as total_number_of_attacks magpie_attacks.number
+    -> from australian_states a
+    -> join dropbear_attacks d
+    -> on a.state_code = d.state_code
+    -> join magpie_attacks m
+    -> on a.state_code = m.state_code ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'magpie_attacks.number
+from australian_states a
+join dropbear_attacks d
+on a.stat' at line 1
+mysql> select a.state_code ,a.state_name, d.number_of_attacks + m.number_of_attacks as total_number_of_attacks
+    -> from australian_states a
+    -> join dropbear_attacks d
+    -> on a.state_code = d.state_code
+    -> join magpie_attacks m
+    -> on a.state_code = m.state_code ;
++------------+-------------------+-------------------------+
+| state_code | state_name        | total_number_of_attacks |
++------------+-------------------+-------------------------+
+| SA         | South Australia   |                     175 |
+| VIC        | Victoria          |                    1039 |
+| TAS        | Tasmania          |                      30 |
+| NSW        | New South Whales  |                     842 |
+| QLD        | Queensland        |                    1181 |
+| WA         | Western Australia |                     324 |
++------------+-------------------+-------------------------+
+6 rows in set (0.00 sec)
+
+mysql>  select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks
+    ->     -> from australian_states
+    ->     -> join dropbear_attacks
+    ->     -> on australian_states.state_code = dropbear_attacks.state_co^Z^Z^Z\c
+mysql> select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks
+    ->  from australian_states
+    -> left join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code ;
++------------+------------------------------+-------------------+
+| state_code | state_name                   | number_of_attacks |
++------------+------------------------------+-------------------+
+| SA         | South Australia              |                21 |
+| VIC        | Victoria                     |                67 |
+| TAS        | Tasmania                     |                30 |
+| NSW        | New South Whales             |                19 |
+| QLD        | Queensland                   |                40 |
+| WA         | Western Australia            |                37 |
+| ACT        | Australian Capital Territory |              NULL |
+| NT         | Northern Territory           |              NULL |
++------------+------------------------------+-------------------+
+8 rows in set (0.00 sec)
+
+mysql> select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks
+    ->  from australian_states
+    -> right join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code ;
++------------+-------------------+-------------------+
+| state_code | state_name        | number_of_attacks |
++------------+-------------------+-------------------+
+| SA         | South Australia   |                21 |
+| VIC        | Victoria          |                67 |
+| TAS        | Tasmania          |                30 |
+| NSW        | New South Whales  |                19 |
+| QLD        | Queensland        |                40 |
+| WA         | Western Australia |                37 |
++------------+-------------------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks
+    ->  from australian_states
+    -> outer join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'outer join dropbear_attacks
+on australian_states.state_code = dropbear_attacks.s' at line 3
+mysql> select australian_states.state_code , australian_states.state_name , dropbear_attacks.number_of_attacks
+    ->  from australian_states
+    -> left join dropbear_attacks
+    -> on australian_states.state_code = dropbear_attacks.state_code
+    -> AND australian_states.state_code = "SA";
++------------+------------------------------+-------------------+
+| state_code | state_name                   | number_of_attacks |
++------------+------------------------------+-------------------+
+| SA         | South Australia              |                21 |
+| VIC        | Victoria                     |              NULL |
+| TAS        | Tasmania                     |              NULL |
+| NSW        | New South Whales             |              NULL |
+| QLD        | Queensland                   |              NULL |
+| WA         | Western Australia            |              NULL |
+| ACT        | Australian Capital Territory |              NULL |
+| NT         | Northern Territory           |              NULL |
++------------+------------------------------+-------------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from australian_states;
++------------+------------------------------+------------+----------+
+| state_code | state_name                   | population | area_km2 |
++------------+------------------------------+------------+----------+
+| SA         | South Australia              |    1751693 |  1044353 |
+| VIC        | Victoria                     |    6594804 |   237657 |
+| TAS        | Tasmania                     |     534281 |    90758 |
+| NSW        | New South Whales             |    8089526 |   809952 |
+| QLD        | Queensland                   |    5095100 |  1851736 |
+| WA         | Western Australia            |    2621680 |  2642753 |
+| ACT        | Australian Capital Territory |     426709 |     2358 |
+| NT         | Northern Territory           |     245869 |  1419630 |
++------------+------------------------------+------------+----------+
+8 rows in set (0.00 sec)

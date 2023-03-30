@@ -1,0 +1,90 @@
+
+mysql> select *
+    -> from wallmart
+    -> ORDER BY `Order Date`
+    -> LIMIT 5;
++----------+----------------+------------+------------+----------------+---------+-----------+------------+-------------+---------+-----------------+--------------+---------------------------------------------------------------------------+--------+----------+----------+----------+
+| SerialNo | Order ID       | Order Date | Ship Date  | Customer Name  | Country | City      | State      | Postal Code | Region  | Category        | Sub-Category | Product Name                                                              | Sales  | Quantity | Discount | Profit   |
++----------+----------------+------------+------------+----------------+---------+-----------+------------+-------------+---------+-----------------+--------------+---------------------------------------------------------------------------+--------+----------+----------+----------+
+|      117 | CA-2012-110457 | 02-03-2012 | 06-03-2012 | Dave Kipp      | USA     | Seattle   | Washington |       98103 | West    | Furniture       | Tables       | Hon Racetrack Conference Tables                                           | 787.53 |        3 |        0 | 165.3813 |
+|      102 | CA-2013-129903 | 02-12-2013 | 05-12-2013 | Gary Zandusky  | USA     | Rochester | Minnesota  |       55901 | Central | Office Supplies | Paper        | Universal Premium White Copier/Laser Paper (20Lb. and 87 Bright)          |  23.92 |        4 |        0 |  11.7208 |
+|      130 | US-2014-164147 | 03-02-2014 | 06-02-2014 | Dorothy Wardle | USA     | Columbus  | Ohio       |       43229 | East    | Technology      | Phones       | Anker 36W 4-Port USB Wall Charger Travel Power Adapter for iPhone 5s 5c 5 |  59.97 |        5 |      0.4 |  -11.994 |
+|      131 | US-2014-164147 | 03-02-2014 | 06-02-2014 | Dorothy Wardle | USA     | Columbus  | Ohio       |       43229 | East    | Office Supplies | Paper        | Xerox 1916                                                                | 78.304 |        2 |      0.2 |   29.364 |
+|      132 | US-2014-164147 | 03-02-2014 | 06-02-2014 | Dorothy Wardle | USA     | Columbus  | Ohio       |       43229 | East    | Office Supplies | Fasteners    | Staples                                                                   | 21.456 |        9 |      0.2 |   6.9732 |
++----------+----------------+------------+------------+----------------+---------+-----------+------------+-------------+---------+-----------------+--------------+---------------------------------------------------------------------------+--------+----------+----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select *
+    -> from wallmart
+    -> ORDER BY `Postal Code`
+    -> LIMIT 5;
++----------+----------------+------------+------------+-------------------+---------+---------------+----------+-------------+--------+-----------------+--------------+------------------------------------------------------------+---------+----------+----------+----------+
+| SerialNo | Order ID       | Order Date | Ship Date  | Customer Name     | Country | City          | State    | Postal Code | Region | Category        | Sub-Category | Product Name                                               | Sales   | Quantity | Discount | Profit   |
++----------+----------------+------------+------------+-------------------+---------+---------------+----------+-------------+--------+-----------------+--------------+------------------------------------------------------------+---------+----------+----------+----------+
+|       70 | CA-2013-106075 | 19-09-2013 | 24-09-2013 | Henry MacAllister | USA     | New York City | New York |       10009 | East   | Office Supplies | Binders      | Avery Binding System Hidden Tab Executive Style Index Sets |   4.616 |        1 |      0.2 |    1.731 |
+|       96 | CA-2014-161018 | 10-11-2014 | 12-11-2014 | Parhena Norris    | USA     | New York City | New York |       10009 | East   | Furniture       | Furnishings  | 9-3/4 Diameter Round Wall Clock                            |   96.53 |        7 |        0 |  40.5426 |
+|       54 | CA-2013-105816 | 12-12-2013 | 18-12-2013 | Janet Molinari    | USA     | New York City | New York |       10024 | East   | Technology      | Phones       | AT&T CL83451 4-Handset Telephone                           | 1029.95 |        5 |        0 | 298.6855 |
+|       53 | CA-2013-105816 | 12-12-2013 | 18-12-2013 | Janet Molinari    | USA     | New York City | New York |       10024 | East   | Office Supplies | Fasteners    | Advantus Push Pins                                         |   15.26 |        7 |        0 |   6.2566 |
+|      110 | CA-2014-146780 | 26-12-2014 | 31-12-2014 | Cynthia Voltz     | USA     | New York City | New York |       10035 | East   | Furniture       | Furnishings  | Magnifier Swing Arm Lamp                                   |   41.96 |        2 |        0 |  10.9096 |
++----------+----------------+------------+------------+-------------------+---------+---------------+----------+-------------+--------+-----------------+--------------+------------------------------------------------------------+---------+----------+----------+----------+
+5 rows in set (0.05 sec)
+
+mysql> select *
+    -> from wallmart
+    -> ORDER BY `Postal Code` DESC
+    -> LIMIT 5;
++----------+----------------+------------+------------+----------------+---------+-----------+------------+-------------+--------+-----------------+--------------+-------------------------------------------------------+---------+----------+----------+----------+
+| SerialNo | Order ID       | Order Date | Ship Date  | Customer Name  | Country | City      | State      | Postal Code | Region | Category        | Sub-Category | Product Name                                          | Sales   | Quantity | Discount | Profit   |
++----------+----------------+------------+------------+----------------+---------+-----------+------------+-------------+--------+-----------------+--------------+-------------------------------------------------------+---------+----------+----------+----------+
+|       13 | CA-2013-161389 | 06-12-2013 | 11-12-2013 | Irene Maddox   | USA     | Seattle   | Washington |       98103 | West   | Office Supplies | Binders      | Fellowes PB200 Plastic Comb Binding Machine           | 407.976 |        3 |      0.2 | 132.5922 |
+|      117 | CA-2012-110457 | 02-03-2012 | 06-03-2012 | Dave Kipp      | USA     | Seattle   | Washington |       98103 | West   | Furniture       | Tables       | Hon Racetrack Conference Tables                       |  787.53 |        3 |        0 | 165.3813 |
+|       95 | US-2014-109484 | 07-11-2014 | 13-11-2014 | Roger Barcio   | USA     | Portland  | Oregon     |       97206 | West   | Office Supplies | Binders      | Flexible Leather- Look Classic Collection Ring Binder |   5.682 |        1 |      0.7 |   -3.788 |
+|      135 | CA-2013-145583 | 14-10-2013 | 20-10-2013 | Lena Creighton | USA     | Roseville | California |       95661 | West   | Office Supplies | Art          | Sanford Colorific Colored Pencils, 12/Box             |   11.52 |        4 |        0 |    3.456 |
+|      134 | CA-2013-145583 | 14-10-2013 | 20-10-2013 | Lena Creighton | USA     | Roseville | California |       95661 | West   | Office Supplies | Paper        | Xerox 1880                                            |   35.44 |        1 |        0 |  16.6568 |
++----------+----------------+------------+------------+----------------+---------+-----------+------------+-------------+--------+-----------------+--------------+-------------------------------------------------------+---------+----------+----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select `Postal Code`,Profit
+    -> from wallmart
+    -> order by `Postal Code`,Profit
+    -> limit 5;
++-------------+----------+
+| Postal Code | Profit   |
++-------------+----------+
+|       10009 |    1.731 |
+|       10009 |  40.5426 |
+|       10024 |   6.2566 |
+|       10024 | 298.6855 |
+|       10035 |  10.9096 |
++-------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select `Postal Code`,Profit
+    -> from wallmart
+    -> order by `Postal Code` desc, Profit
+    -> limit 5;
++-------------+----------+
+| Postal Code | Profit   |
++-------------+----------+
+|       98103 | 132.5922 |
+|       98103 | 165.3813 |
+|       97206 |   -3.788 |
+|       95661 |   1.9698 |
+|       95661 |    3.456 |
++-------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select `Postal Code`,Profit
+    -> from wallmart
+    -> order by `Postal Code`,Profit desc
+    -> limit 5;
++-------------+----------+
+| Postal Code | Profit   |
++-------------+----------+
+|       10009 |  40.5426 |
+|       10009 |    1.731 |
+|       10024 | 298.6855 |
+|       10024 |   6.2566 |
+|       10035 |  10.9096 |
++-------------+----------+
+5 rows in set (0.00 sec)

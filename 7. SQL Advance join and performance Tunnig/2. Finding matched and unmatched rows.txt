@@ -1,0 +1,9 @@
+Finding Matched and Unmatched Rows with FULL OUTER JOIN
+SELECT *
+  FROM accounts
+ FULL JOIN sales_reps ON accounts.sales_rep_id = sales_reps.id
+If unmatched rows existed (they don't for this query), you could isolate them by adding the following line to the end of the query:
+
+WHERE accounts.sales_rep_id IS NULL OR sales_reps.id IS NULL
+To elaborate on the rarity of FULL OUTER JOINS in practice, this Stack Overflow answer is helpful: When is a good situation to use a full outer join?
+
